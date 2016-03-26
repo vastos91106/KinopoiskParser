@@ -28,7 +28,7 @@ namespace ParseDemon
                 var legacyRequest = (HttpWebRequest)WebRequest.Create("http://www.kinopoisk.ru/name/" + id);
                 CurentIp = ProxyList[new Random().Next(0, ProxyList.Count)];
 
-                legacyRequest.Proxy = new WebProxy(CurentIp);
+                //legacyRequest.Proxy = new WebProxy(CurentIp);
                 Console.WriteLine($"proxy {CurentIp},people:{id}");
 
                 SetRequestProperty(ref legacyRequest);
@@ -41,7 +41,7 @@ namespace ParseDemon
                     Console.WriteLine($"kinopoisk block proxy/ url:{legacyResponse.ResponseUri.AbsoluteUri}");
                     Parse(id);
                 }
-                if (legacyResponse.ResponseUri.AbsoluteUri != "http://www.kinopoisk.ru/404/" && legacyResponse.ResponseUri.AbsoluteUri == "http://www.kinopoisk.ru/film/" + id)
+                if (legacyResponse.ResponseUri.AbsoluteUri != "http://www.kinopoisk.ru/404/" && legacyResponse.ResponseUri.AbsoluteUri == "http://www.kinopoisk.ru/name/" + id)
                 {
                     try
                     {
